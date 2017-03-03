@@ -4,6 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Salary Info</title>
+        <link rel="stylesheet" type="text/css" href="formatting.css"/>
     </head>
     
     <%
@@ -28,10 +29,10 @@
         preTaxPay = grossPay - preTaxDeduct;
         
         if(grossPay<500){
-            taxAmt=grossPay*.18;
+            taxAmt=preTaxPay*.18;
         }
         else{
-            taxAmt=grossPay*.22;
+            taxAmt=preTaxPay*.22;
         }
         
         postTaxPay=preTaxPay-taxAmt;
@@ -41,6 +42,7 @@
         %>
     
     <body>
+        <a href="/HW3/index.html"> Back </a>
         <h1>Salary Info</h1>
         
         <table border="1">
