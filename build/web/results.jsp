@@ -11,7 +11,33 @@
         Double pay = Double.parseDouble(request.getParameter("pay"));
         Double preTaxDeduct = Double.parseDouble(request.getParameter("preTax"));
         Double postTaxDeduct = Double.parseDouble(request.getParameter("postTax"));
+        Double overtime = 0.0;
+        Double grossPay = 0.0;
+        Double overTimeRate = pay*1.5;
+        Double preTaxPay = 0.0;
+        Double taxAmt = 0.0;
+        Double postTaxPay = 0.0;
+        Double net = 0.0;
         
+        if(hour>40){
+            overtime = hour-40;
+        }
+        
+        grossPay = ((hour-overtime) * pay)+(overtime*(overTimeRate));
+
+        preTaxPay = grossPay - preTaxDeduct;
+        
+        if(grossPay<500){
+            taxAmt=grossPay*.18;
+        }
+        else{
+            taxAmt=grossPay*.22;
+        }
+        
+        postTaxPay=preTaxPay-taxAmt;
+        
+        net = postTaxPay-postTaxDeduct;
+
         %>
     
     <body>
@@ -29,15 +55,15 @@
                 </tr>
                  <tr>
                     <td>#Hours Overtime:</td>
-                    <td></td>
+                    <td><%= overtime %></td>
                 </tr>
                  <tr>
                     <td>Overtime Hourly Rate:</td>
-                    <td></td>
+                    <td><%= overTimeRate%></td>
                 </tr>
                  <tr>
                     <td>Gross Pay:</td>
-                    <td></td>
+                    <td><%= grossPay %></td>
                 </tr>
                  <tr>
                     <td>Pre-tax Deduct:</td>
@@ -45,15 +71,15 @@
                 </tr>
                  <tr>
                     <td>Pre-tax Pay:</td>
-                    <td></td>
+                    <td><%= preTaxPay %></td>
                 </tr>
                  <tr>
                     <td>Tax Amount:</td>
-                    <td></td>
+                    <td><%= taxAmt %></td>
                 </tr>
                  <tr>
                     <td>Post-tax Pay:</td>
-                    <td></td>
+                    <td><%= postTaxPay %></td>
                 </tr>
                  <tr>
                     <td>Post-tax Deduct:</td>
@@ -61,7 +87,7 @@
                 </tr>
                  <tr>
                     <td>Net Pay:</td>
-                    <td></td>
+                    <td><%= net %></td>
                 </tr>
             </tbody>
         </table>
