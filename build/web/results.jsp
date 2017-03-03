@@ -42,7 +42,7 @@
         %>
     
     <body>
-        <a href="/HW3/index.html"> Back </a>
+        <a href="/HW3/index.jsp"> Back </a>
         <h1>Salary Info</h1>
         
         <table border="1">
